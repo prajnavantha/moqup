@@ -31,23 +31,6 @@ let createView = function() {
             "text": item["element"]
         }).appendTo(wrapper)
 
-        // if (item["element"] !== "button" && item["element"] !== "block") {
-
-
-        //     $("<div/>", {
-        //         "style": "width: 100%;background-image: url('" + item["url"] + "');background-repeat: no-repeat;background-size: contain;background-position: center;   height: 50px;"
-        //     }).appendTo(cont)
-        // }
-        // if (item["element"] === "button") {
-        //     let butCont = $("<div/>", {}).appendTo(cont)
-        //     $("<div/>", {
-        //         "text": "Button",
-        //         "class": "text-center",
-        //         "style": "padding: 5px;"
-        //     }).appendTo(butCont)
-
-        // }
-
         cont.appendTo(container)
 
     })
@@ -63,9 +46,9 @@ let attachHandlers = function() {
             top: -10
         },
         drag: function() {
-            var offset = $(this).offset();
-            var xPos = offset.left;
-            var yPos = offset.top;
+            // var offset = $(this).offset();
+            // var xPos = offset.left;
+            // var yPos = offset.top;
         },
         helper: function(event) {
             var clone = $(this).clone();
@@ -73,11 +56,6 @@ let attachHandlers = function() {
             return clone; //$("<div class='ui-widget-header'>I'm a custom helper</div>");
         }
 
-        // stop: function() {
-        //     self.isDragging = false
-        //     self.isComponentDragging = false
-        //     self.isStructureDragging = false
-        // }
     });
 
 }

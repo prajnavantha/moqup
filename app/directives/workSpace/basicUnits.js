@@ -4,15 +4,15 @@
          "class": "unitComponent basicUnit",
      }, {
          "type": "content",
-         "element": "text",
+         "element": "anchor",
          "class": "unitComponent basicUnit",
      }, {
          "type": "content",
-         "element": "block",
+         "element": "paragraph",
          "class": "unitComponent basicUnit",
      }, {
          "type": "content",
-         "element": "button",
+         "element": "header",
          "class": "unitComponent basicUnit",
      }
 

@@ -25,3 +25,7 @@
 .full-height {
 	height: 100%;
 }
+
+.display-inline {
+	display: inline-block;
+}

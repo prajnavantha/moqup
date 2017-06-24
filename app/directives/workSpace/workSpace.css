@@ -37,3 +37,59 @@
     text-align: center;
     text-transform: uppercase;
 }
+
+.contentHoverClass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(40, 147, 179);
+}
+
+.workspace-baseUnit:hover .contentHoverClass {
+    display: block !important;
+}
+
+
+/*Resize handlers*/
+
+.ui-resize-y-b {
+    cursor: row-resize;
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    background-color: rgba(0, 0, 0, 0);
+    left: 0;
+    bottom: -5px;
+}
+
+.ui-resize-y-t {
+    cursor: row-resize;
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    background-color: rgba(0, 0, 0, 0);
+    left: 0;
+    top: -5px;
+}
+
+.ui-resize-x-r {
+    cursor: col-resize;
+    position: absolute;
+    width: 7px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    right: -2px;
+    top: 0;
+}
+
+.ui-resize-x-l {
+    cursor: col-resize;
+    position: absolute;
+    width: 7px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    left: -2px;
+    top: 0;
+}

@@ -5,6 +5,7 @@ module.exports = function(ngModule) {
 
     const workSpaceHandler = require("./workSpaceHandler");
     const basicUnitHandler = require("./basicUnitHandler");
+    const attributeHandler = require("./attributeHandler");
 
     ngModule.directive('moqupModule', function() {
 
@@ -14,6 +15,7 @@ module.exports = function(ngModule) {
             templateUrl: 'directives/workSpace/layout.html',
             controllerAs: 'vm',
             controller: function() {
+                console.log(arguments)
                 var vm = this;
                 // vm.greeting = 'Hello'
                 //THis will be the mediator for the app
@@ -21,6 +23,8 @@ module.exports = function(ngModule) {
                 workSpaceHandler($workSpaceContainer);
                 let $draggableContainer = $("#draggable");
                 basicUnitHandler($draggableContainer);
+                let $configContainer = $("#layoutConfig");
+                attributeHandler.init($configContainer)
 
             }
         }
