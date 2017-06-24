@@ -34,12 +34,15 @@ let attrOptions = (function() {
     let loadAttribute = function(ele, tp) {
         element = ele;
         type = tp;
+        var id = container.attr("id");
+
+        $("a[href='#" + id + "']").click();
         container.empty();
         let layout = "";
         if (type === "image") {
             layout = loadImageLayout();
         }
-        if (type === "heading") {
+        if (type === "header") {
             layout = loadHeaderLayout();
         }
         if (type === "anchor") {

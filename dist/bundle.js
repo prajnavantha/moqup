@@ -13543,7 +13543,10 @@ return $.ui.droppable;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+/* WEBPACK VAR INJECTION */(function($) {/**
+ * Handles the attributes of the elements clicked in the workspace
+ */
+
 
 let attrOptions = function () {
 
@@ -13581,12 +13584,15 @@ let attrOptions = function () {
     let loadAttribute = function (ele, tp) {
         element = ele;
         type = tp;
+        var id = container.attr("id");
+
+        $("a[href='#" + id + "']").click();
         container.empty();
         let layout = "";
         if (type === "image") {
             layout = loadImageLayout();
         }
-        if (type === "heading") {
+        if (type === "header") {
             layout = loadHeaderLayout();
         }
         if (type === "anchor") {
@@ -49837,7 +49843,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
+exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n.droppableHover {\n    box-shadow: 0 0 11px black inset !important;\n    cursor: cell;\n    /*background-color: rgb(242, 242, 242) !important;*/\n}\n\n#layoutConfig {\n    padding: 10px;\n}\n\n\n/*For line suport*/\n\n#heMidLine {\n    width: 100%;\n    height: 1px;\n    background: #777777 !important;\n}\n\n#veMidLine {\n    width: 1px;\n    height: 100%;\n    background: #777777 !important;\n}\n\n#hMidLine,\n#vMidLine,\n#vLineBase,\n#hLineBase,\n#heMidLine,\n#veMidLine,\n#hLine,\n#vLine {\n    z-index: 8000;\n    background: #ff88f9;\n    display: none;\n    top: 0;\n    left: 0;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
 
 // exports
 
@@ -49935,8 +49941,10 @@ let attachDraggable = function (element) {
         },
         drag: function (event, ui) {
             // thake care of showing lines
+            computeHelperLine(ui.helper);
         },
         stop: function (event, ui) {
+            removeHelperLine(ui.helper);
             //get percentage from position
             //// thake care of showing lines
             // templateComponent.alignSupport().getInstance().stop()
@@ -49947,9 +49955,46 @@ let attachDraggable = function (element) {
             // var topperc = top / self.containerElement.height() * 100
             // ui.helper.css("left", Math.round(leftperc) + "%")
             // ui.helper.css("top", Math.round(topperc) + "%")
-
         }
     });
+};
+
+let computeHelperLine = function (element) {
+    if ($("#veMidLine").length == 0) {
+        $("<div/>", {
+            "class": "position-absolute",
+            "id": "veMidLine"
+
+        }).appendTo(container);
+    }
+    if ($("#heMidLine").length == 0) {
+
+        $("<div/>", {
+            "class": "position-absolute",
+            "id": "heMidLine"
+
+        }).appendTo(container);
+    }
+
+    var offset = element.position();
+    var eLeft = offset.left;
+    var eTop = offset.top;
+    var eWidth = element.outerWidth();
+    var eHeight = element.outerHeight();
+
+    container.find("#heMidLine").show().css({
+        "top": (eTop + eHeight / 2) / container.height() * 100 + "%"
+    }).show();
+
+    container.find("#veMidLine").show().css({
+        "left": (eLeft + eWidth / 2) / container.width() * 100 + "%"
+    }).show();
+};
+
+let removeHelperLine = function () {
+    // body...
+    container.find("#heMidLine").hide();
+    container.find("#veMidLine").hide();
 };
 
 module.exports = init;
@@ -50302,7 +50347,7 @@ let getHeaderUnit = function (argument) {
     let content = $("<div/>", {
         "data-type": "content",
         "data-option": "header",
-        "style": "width:25%;height:8%;position:absolute;background-color:rgb(249, 248, 248);color:#000;border:1px solid #000;box-sizing: border-box;",
+        "style": "width:25%;position:absolute;background-color:#fff;border:1px solid #000;box-sizing: border-box;",
         "class": "position-absolute text-center display-inline workspace-baseUnit"
     });
     $("<h2/>", {
@@ -50529,11 +50574,6 @@ let attachHandlers = function () {
             return clone; //$("<div class='ui-widget-header'>I'm a custom helper</div>");
         }
 
-        // stop: function() {
-        //     self.isDragging = false
-        //     self.isComponentDragging = false
-        //     self.isStructureDragging = false
-        // }
     });
 };
 

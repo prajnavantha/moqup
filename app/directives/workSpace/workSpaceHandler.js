@@ -93,8 +93,10 @@ let attachDraggable = function(element) {
         },
         drag: function(event, ui) {
             // thake care of showing lines
+            computeHelperLine(ui.helper);
         },
         stop: function(event, ui) {
+            removeHelperLine(ui.helper);
             //get percentage from position
             //// thake care of showing lines
             // templateComponent.alignSupport().getInstance().stop()
@@ -110,5 +112,52 @@ let attachDraggable = function(element) {
     });
 }
 
+
+let computeHelperLine = function(element) {
+    if ($("#veMidLine").length == 0) {
+        $("<div/>", {
+            "class": "position-absolute",
+            "id": "veMidLine",
+
+        }).appendTo(container)
+    }
+    if ($("#heMidLine").length == 0) {
+
+        $("<div/>", {
+            "class": "position-absolute",
+            "id": "heMidLine",
+
+        }).appendTo(container)
+    }
+
+    var offset = element.position()
+    var eLeft = offset.left;
+    var eTop = offset.top;
+    var eWidth = element.outerWidth();
+    var eHeight = element.outerHeight();
+
+    container
+        .find("#heMidLine")
+        .show()
+        .css({
+            "top": (eTop + (eHeight / 2)) / container.height() * 100 + "%"
+        })
+        .show()
+
+    container
+        .find("#veMidLine")
+        .show()
+        .css({
+            "left": (eLeft + (eWidth / 2)) / container.width() * 100 + "%"
+        })
+        .show()
+
+}
+
+let removeHelperLine = function() {
+    // body...
+    container.find("#heMidLine").hide();
+    container.find("#veMidLine").hide();
+}
 
 module.exports = init;

@@ -89,7 +89,7 @@ let getHeaderUnit = function(argument) {
     let content = $("<div/>", {
         "data-type": "content",
         "data-option": "header",
-        "style": "width:25%;height:8%;position:absolute;background-color:rgb(249, 248, 248);color:#000;border:1px solid #000;box-sizing: border-box;",
+        "style": "width:25%;position:absolute;background-color:#fff;border:1px solid #000;box-sizing: border-box;",
         "class": "position-absolute text-center display-inline workspace-baseUnit"
     })
     $("<h2/>", {
