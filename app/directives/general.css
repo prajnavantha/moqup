@@ -1,0 +1,27 @@
+.flexDisplay {
+    display: flex;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.reset-margin {
+    margin: 0;
+}
+
+.flex-stretch {
+    flex: 1;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.full-height {
+	height: 100%;
+}

@@ -1,0 +1,39 @@
+.layout-header {
+    padding: 20px;
+}
+
+.workspace {
+    width: 70%;
+}
+
+.default-position {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.droppable {
+    margin: 20px;
+    border: 1px solid #ccc;
+    background-size: 15px 15px;
+    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);
+}
+
+.highlight {
+    border: 1px solid red;
+    font-weight: bold;
+    font-size: 45px;
+    background-color: #333333;
+}
+
+.draggables {}
+
+.basicUnit {
+    cursor: pointer;
+    padding: 20px;
+    border: 1px solid #ccc;
+    height: 100px;
+    text-align: center;
+    text-transform: uppercase;
+}
