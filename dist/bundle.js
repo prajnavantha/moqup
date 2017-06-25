@@ -51486,6 +51486,10 @@ let computeAlignmentLines = function (element) {
 
         function clear() {
             maps.length = 0;
+            $("#hLine").hide();
+            $("#vLine").hide();
+            $("#hLineBase").hide();
+            $("#vLineBase").hide();
         }
 
         function handleComputation() {
