@@ -1,3 +1,7 @@
+/**
+ * @fileOverview Handle login and logute services
+ */
+
 "use strict"
 
 

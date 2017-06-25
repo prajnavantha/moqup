@@ -13685,7 +13685,7 @@ let attrOptions = function () {
         }).appendTo($formGrp);
 
         $("<label/>", {
-            "text": "Anhor url link"
+            "text": "Anchor url link"
         }).appendTo($formGrp);
         $("<input/>", {
             "class": "form-control",
@@ -13757,9 +13757,13 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.run(function ($rootScope, $location, loginService) {
     let routePermission = ['/workspace'];
+    let loginPath = ['/login'];
     $rootScope.$on('$routeChangeStart', function () {
         if (routePermission.indexOf($location.path()) !== -1 && !utils.getCookie("accessToken")) {
             $location.path("/login");
+        }
+        if (loginPath.indexOf($location.path()) !== -1 && utils.getCookie("accessToken")) {
+            $location.path("/workspace");
         }
     });
 });
@@ -51145,6 +51149,10 @@ exports.push([module.i, ".loginForm {\n    padding: 20px;\n    /* border: 3px so
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/**
+ * @fileOverview Handle login and logute services
+ */
+
 
 
 module.exports = function (ngModule) {
@@ -51995,7 +52003,10 @@ module.exports = init;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+/* WEBPACK VAR INJECTION */(function($) {/**
+ * @fileOverview Resizing options support for elements dragged into the workspace
+ */
+
 
 __webpack_require__(0);
 

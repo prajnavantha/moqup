@@ -1,3 +1,6 @@
+/**
+ * @fileOverview Resizing options support for elements dragged into the workspace
+ */
 "use strict"
 
 require('jquery');

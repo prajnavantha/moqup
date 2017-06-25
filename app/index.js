@@ -30,9 +30,14 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.run(function($rootScope, $location, loginService) {
     let routePermission = ['/workspace'];
+    let loginPath = ['/login'];
     $rootScope.$on('$routeChangeStart', function() {
         if (routePermission.indexOf($location.path()) !== -1 && !utils.getCookie("accessToken")) {
             $location.path("/login");
         }
+        if (loginPath.indexOf($location.path()) !== -1 && utils.getCookie("accessToken")) {
+            $location.path("/workspace");
+        }
+
     })
 })

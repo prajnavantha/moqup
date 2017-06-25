@@ -138,7 +138,7 @@ let attrOptions = (function() {
         }).appendTo($formGrp)
 
         $("<label/>", {
-            "text": "Anhor url link"
+            "text": "Anchor url link"
         }).appendTo($formGrp)
         $("<input/>", {
             "class": "form-control",

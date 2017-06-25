@@ -7,14 +7,11 @@ const attributeHandler = require("./attributeHandler");
 module.exports = function($scope,loginService) {
 
 
-
 	$scope.signout = function () {
 		console.log("here");
         loginService.logout();
 		
 	}
-
-
 
     let $workSpaceContainer = $(".droppable");
     workSpaceHandler($workSpaceContainer);
