@@ -4,7 +4,13 @@ const basicUnitHandler = require("./basicUnitHandler");
 const attributeHandler = require("./attributeHandler");
 
 
-module.exports = function() {
+module.exports = function($scope) {
+
+
+
+	$scope.signout = function () {
+		console.log("here");
+	}
 
     let $workSpaceContainer = $(".droppable");
     workSpaceHandler($workSpaceContainer);

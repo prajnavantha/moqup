@@ -93,7 +93,6 @@ let getHeaderUnit = function(argument) {
         "class": "position-absolute text-center display-inline workspace-baseUnit"
     })
     $("<h2/>", {
-        "style": "width: 100%;height: 100%;word-wrap: break-word;",
         "class": "data",
         "text": lorem
     }).appendTo(content)

@@ -33,3 +33,11 @@
 .display-inline {
 	display: inline-block;
 }
+
+.justify-content-space {
+	justify-content: space-between;
+}
+
+.base-color {
+	color: #fff;
+}

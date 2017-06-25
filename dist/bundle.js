@@ -13552,6 +13552,7 @@ let attrOptions = function () {
 
     let container = "";
     let element = "";
+    let eleWrapper = "";
     let type = "";
     let init = function (cont) {
         container = cont;
@@ -13578,12 +13579,18 @@ let attrOptions = function () {
             }
         });
 
-        container.on("input", function () {
-            // body...
+        container.on("change", "select", function () {
+            let $this = $(this);
+
+            let text = element.text();
+            let tag = $this.val();
+            element.replaceWith('<' + tag + ' class = "data">' + text + '</' + tag + '>');
+            element = eleWrapper.find(".data");
         });
     };
     let loadAttribute = function (ele, tp) {
-        element = ele;
+        element = ele.find(".data");
+        eleWrapper = ele;
         type = tp;
         var id = container.attr("id");
 
@@ -13643,6 +13650,25 @@ let attrOptions = function () {
             "data-type": "content",
             "text": element.text()
         }).appendTo($formGrp);
+
+        $("<label/>", {
+            "text": "Change header"
+        }).appendTo($formGrp);
+
+        let headers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+        let $sel = $("<select/>", {
+            "class": "form-control"
+        });
+
+        headers.forEach(function (item) {
+            $("<option/>", {
+                text: item,
+                value: item
+            }).appendTo($sel);
+        });
+
+        $sel.appendTo($formGrp);
+
         return $formGrp;
     };
     let loadAnchorLayout = function () {
@@ -49782,7 +49808,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".flexDisplay {\n    display: flex;\n}\n\n.position-absolute {\n    position: absolute;\n}\n\n.position-relative {\n    position: relative;\n}\n\n.reset-margin {\n    margin: 0;\n}\n\n.flex-stretch {\n    flex: 1;\n}\n\n.flex-column {\n    flex-direction: column;\n}\n\n.full-height {\n\theight: 100%;\n}\n\n.full-width {\n\twidth: 100%;\n}\n\n.display-inline {\n\tdisplay: inline-block;\n}", ""]);
+exports.push([module.i, ".flexDisplay {\n    display: flex;\n}\n\n.position-absolute {\n    position: absolute;\n}\n\n.position-relative {\n    position: relative;\n}\n\n.reset-margin {\n    margin: 0;\n}\n\n.flex-stretch {\n    flex: 1;\n}\n\n.flex-column {\n    flex-direction: column;\n}\n\n.full-height {\n\theight: 100%;\n}\n\n.full-width {\n\twidth: 100%;\n}\n\n.display-inline {\n\tdisplay: inline-block;\n}\n\n.justify-content-space {\n\tjustify-content: space-between;\n}\n\n.base-color {\n\tcolor: #fff;\n}", ""]);
 
 // exports
 
@@ -51240,7 +51266,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n.droppableHover {\n    box-shadow: 0 0 11px black inset !important;\n    cursor: cell;\n    /*background-color: rgb(242, 242, 242) !important;*/\n}\n\n#layoutConfig {\n    padding: 10px;\n}\n\n\n/*For line suport*/\n\n#heMidLine {\n    width: 100%;\n    height: 1px;\n    background: #777777 !important;\n}\n\n#veMidLine {\n    width: 1px;\n    height: 100%;\n    background: #777777 !important;\n}\n\n#hMidLine,\n#vMidLine,\n#vLineBase,\n#hLineBase,\n#heMidLine,\n#veMidLine,\n#hLine,\n#vLine {\n    z-index: 8000;\n    background: #ff88f9;\n    display: none;\n    top: 0;\n    left: 0;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
+exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n.droppableHover {\n    box-shadow: 0 0 11px black inset !important;\n    cursor: cell;\n    /*background-color: rgb(242, 242, 242) !important;*/\n}\n\n#layoutConfig {\n    padding: 10px;\n}\n\n\n/*For line suport*/\n\n#vLine {\n    width: 1px;\n    height: 100%;\n}\n\n#hLine {\n    width: 100%;\n    height: 1px;\n}\n\n#heMidLine {\n    width: 100%;\n    height: 1px;\n    background: #777777 !important;\n}\n\n#veMidLine {\n    width: 1px;\n    height: 100%;\n    background: #777777 !important;\n}\n\n#vLineBase {\n    width: 1px;\n    height: 100%;\n    /*background: #FF8904 !important;*/\n}\n\n#hLineBase {\n    width: 100%;\n    height: 1px;\n    /*background: #FF8904 !important;*/\n}\n\n#hMidLine,\n#vMidLine,\n#vLineBase,\n#hLineBase,\n#heMidLine,\n#veMidLine,\n#hLine,\n#vLine {\n    z-index: 8000;\n    background: #ff88f9;\n    display: none;\n    top: 0;\n    left: 0;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
 
 // exports
 
@@ -51256,14 +51282,18 @@ const workSpaceHandler = __webpack_require__(49);
 const basicUnitHandler = __webpack_require__(58);
 const attributeHandler = __webpack_require__(9);
 
-module.exports = function () {
+module.exports = function ($scope) {
 
-    let $workSpaceContainer = $(".droppable");
-    workSpaceHandler($workSpaceContainer);
-    let $draggableContainer = $("#draggable");
-    basicUnitHandler($draggableContainer);
-    let $configContainer = $("#layoutConfig");
-    attributeHandler.init($configContainer);
+  $scope.signout = function () {
+    console.log("here");
+  };
+
+  let $workSpaceContainer = $(".droppable");
+  workSpaceHandler($workSpaceContainer);
+  let $draggableContainer = $("#draggable");
+  basicUnitHandler($draggableContainer);
+  let $configContainer = $("#layoutConfig");
+  attributeHandler.init($configContainer);
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -51308,8 +51338,8 @@ let attachHandlers = function () {
         e.stopPropagation();
         let $this = $(this);
         let type = $this.attr("data-option");
-        let element = $this.find(".data");
-        attributeHandler.loadAttribute(element, type);
+
+        attributeHandler.loadAttribute($this, type);
     });
 };
 
@@ -51363,9 +51393,11 @@ let attachDraggable = function (element) {
         drag: function (event, ui) {
             // thake care of showing lines
             computeHelperLine(ui.helper);
+            computeAlignmentLines(ui.helper).compute();
         },
         stop: function (event, ui) {
             removeHelperLine(ui.helper);
+            computeAlignmentLines(ui.helper).clear();
             //get percentage from position
             //// thake care of showing lines
             // templateComponent.alignSupport().getInstance().stop()
@@ -51410,6 +51442,153 @@ let computeHelperLine = function (element) {
     container.find("#veMidLine").show().css({
         "left": (eLeft + eWidth / 2) / container.width() * 100 + "%"
     }).show();
+};
+
+/*Takes care of showing lines when element comes close to any of the existing siblings*/
+let computeAlignmentLines = function (element) {
+
+    return function (element, container) {
+        let maps = [];
+        let threshold = 5;
+        let siblings = element.siblings(".workspace-baseUnit");
+        if (maps.length === 0 || maps.length !== siblings.length) {
+            maps.length = 0;
+            siblings.each(function (i, item) {
+                var $item = $(item);
+                var offset = $item.position();
+
+                maps.push({
+                    "top": offset.top,
+                    "left": offset.left,
+                    "width": $item.outerWidth(),
+                    "height": $item.outerHeight(),
+                    "center": $item.outerWidth() / 2,
+                    "middle": $item.outerHeight() / 2
+                });
+            });
+        }
+
+        if ($("#vLineBase").length == 0) {
+            $("<div/>", {
+                "class": "position-absolute",
+                "id": "vLineBase"
+
+            }).appendTo(container);
+        }
+        if ($("#hLineBase").length == 0) {
+
+            $("<div/>", {
+                "class": "position-absolute",
+                "id": "hLineBase"
+
+            }).appendTo(container);
+        }
+        if ($("#vLine").length == 0) {
+            $("<div/>", {
+                "class": "position-absolute",
+                "id": "vLine"
+
+            }).appendTo(container);
+        }
+        if ($("#hLine").length == 0) {
+
+            $("<div/>", {
+                "class": "position-absolute",
+                "id": "hLine"
+
+            }).appendTo(container);
+        }
+
+        function clear() {
+            maps.length = 0;
+        }
+
+        function handleComputation() {
+            let offset = element.position();
+            let eLeft = offset.left;
+            let eTop = offset.top;
+            let eWidth = element.outerWidth();
+            let eHeight = element.outerHeight();
+            let vLineBase = $("#vLineBase");
+            let hLineBase = $("#hLineBase");
+            let vLine = $("#vLine");
+            let hLine = $("#hLine");
+
+            maps.some(function (item, i) {
+                let alignFound = false;
+                if (item.left + threshold + item.width >= eLeft + eWidth && item.left - threshold + item.width <= eLeft + eWidth) {
+                    vLineBase.show();
+                    vLineBase.css({
+                        "left": (item.left + item.width) / container.width() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else if (item.left + threshold >= eLeft + eWidth && item.left - threshold <= eLeft + eWidth) {
+                    vLineBase.show();
+                    vLineBase.css({
+                        "left": item.left / container.width() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else {
+                    vLineBase.hide();
+                }
+
+                if (item.top + threshold + item.height >= eTop + eHeight && item.top - threshold + item.height <= eTop + eHeight) {
+                    hLineBase.show();
+                    hLineBase.css({
+                        "top": (item.top + item.height) / container.height() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else if (item.top + threshold >= eTop + eHeight && item.top - threshold <= eTop + eHeight) {
+                    hLineBase.show();
+                    hLineBase.css({
+                        "top": item.top / container.height() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else {
+                    hLineBase.hide();
+                }
+
+                if (item.left + threshold >= eLeft && item.left - threshold <= eLeft) {
+                    vLine.show();
+                    vLine.css({
+                        "left": item.left / container.width() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else if (item.left + threshold + item.width >= eLeft && item.left - threshold + item.width <= eLeft) {
+                    vLine.show();
+                    vLine.css({
+                        "left": (item.left + item.width) / container.width() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else {
+                    vLine.hide();
+                }
+
+                if (item.top + threshold >= eTop && item.top - threshold <= eTop) {
+                    hLine.show();
+                    hLine.css({
+                        "top": item.top / container.height() * 100 + "%"
+                    });
+                    alignFound = true;
+                    // break;
+                } else if (item.top + threshold + item.height >= eTop && item.top - threshold + item.height <= eTop) {
+                    hLine.show();
+                    hLine.css({
+                        "top": (item.top + item.height) / container.height() * 100 + "%"
+                    });
+                    alignFound = true;
+                } else {
+                    hLine.hide();
+                }
+
+                return alignFound;
+            });
+        }
+        return {
+            clear: clear,
+            compute: handleComputation
+        };
+    }(element, container);
 };
 
 let removeHelperLine = function () {
@@ -51772,7 +51951,6 @@ let getHeaderUnit = function (argument) {
         "class": "position-absolute text-center display-inline workspace-baseUnit"
     });
     $("<h2/>", {
-        "style": "width: 100%;height: 100%;word-wrap: break-word;",
         "class": "data",
         "text": lorem
     }).appendTo(content);

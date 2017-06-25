@@ -6,6 +6,7 @@ let attrOptions = (function() {
 
     let container = "";
     let element = "";
+    let eleWrapper = "";
     let type = "";
     let init = function(cont) {
         container = cont;
@@ -28,12 +29,18 @@ let attrOptions = (function() {
             }
         })
 
-        container.on("input", function() {
-            // body...
+        container.on("change", "select", function() {
+            let $this = $(this)
+
+            let text = element.text();
+            let tag = $this.val();
+            element.replaceWith('<' + tag + ' class = "data">' + text + '</' + tag + '>');
+            element = eleWrapper.find(".data")
         })
     }
     let loadAttribute = function(ele, tp) {
-        element = ele;
+        element = ele.find(".data");
+        eleWrapper = ele;
         type = tp;
         var id = container.attr("id");
 
@@ -95,6 +102,26 @@ let attrOptions = (function() {
             "data-type": "content",
             "text": element.text()
         }).appendTo($formGrp)
+
+
+        $("<label/>", {
+            "text": "Change header"
+        }).appendTo($formGrp)
+
+        let headers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        let $sel = $("<select/>", {
+            "class": "form-control"
+        })
+
+        headers.forEach(function(item) {
+            $("<option/>", {
+                text: item,
+                value: item
+            }).appendTo($sel)
+        })
+
+        $sel.appendTo($formGrp)
+
         return $formGrp;
     }
     let loadAnchorLayout = function() {
