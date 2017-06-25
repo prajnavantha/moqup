@@ -1,31 +1,45 @@
 "use strict"
 
 
-// module.exports = function (ngModule) {
+module.exports = function(ngModule) {
 
 
-// 	ngModule.factory('loginService', function($http){
-// 		return {
+    ngModule.factory('loginService', function($http, $location) {
+        return {
 
-// 			login : function (user) {
-// 				console.log("login loginService");
-// 				var $promise = $http.post('/login',user)
-// 				$promise.then(function (msg) {
-// 					if(msg.data === "success") {
-// 						console.log("success login")
-// 					}
-// 				})
-// 			}
-// 		}
+            login: function(user, $scope) {
+                console.log("login loginService");
+                $http.post('/login', user)
+                    .then(function(msg) {
+                        if (msg.data.result === "success") {
+                            $location.path("/workspace");
+                            console.log("success login");
+                        } else if (msg.data.result === "failure") {
+                            console.log("login failed");
+                            $scope.msgText = msg.data.reason;
+                            $location.path("/login");
+                        }
+                    })
+                    .catch(function() {
+                        $scope.msgText = "Failed to connect to server"
+                        console.log("failure")
+                    })
+            },
 
-// 	})
-// }
+            logout: function(user, $scope) {
+                $http.get('/logout')
+                    .then(function(msg) {
+                        console.log("success")
+                        $location.path("/login");
+                  
+                    })
+                    .catch(function() {
+                        // $scope.msgText = "Failed to connect to server"
+                        console.log("failure")
+                    })
+            }
 
-module.exports = function() {
-    return {
-    	login :function () {
-    		console.log("lfffffffffffffffffff")
-    	}
+        }
 
-    }
+    })
 }

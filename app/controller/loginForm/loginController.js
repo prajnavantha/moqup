@@ -5,5 +5,4 @@ module.exports = function($scope, loginService) {
         loginService.login(user, $scope);
     }
 
-
 }

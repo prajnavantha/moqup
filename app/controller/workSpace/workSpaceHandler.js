@@ -164,7 +164,7 @@ let computeAlignmentLines = function(element) {
 
     return (function(element, container) {
         let maps = [];
-        let threshold = 5;
+        let threshold = 2;
         let siblings = element.siblings(".workspace-baseUnit");
         if (maps.length === 0 || maps.length !== siblings.length) {
             maps.length = 0;

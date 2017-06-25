@@ -10817,11 +10817,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(0),
 			__webpack_require__(7),
+			__webpack_require__(49),
+			__webpack_require__(50),
+			__webpack_require__(53),
 			__webpack_require__(51),
 			__webpack_require__(52),
-			__webpack_require__(55),
-			__webpack_require__(53),
-			__webpack_require__(54),
 			__webpack_require__(1),
 			__webpack_require__(5)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -12821,7 +12821,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(0),
-			__webpack_require__(50),
+			__webpack_require__(48),
 			__webpack_require__(1),
 			__webpack_require__(5)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -13733,21 +13733,22 @@ const bootstrap = __webpack_require__(13);
 const bs = __webpack_require__(26);
 const generalCss = __webpack_require__(33);
 const utils = __webpack_require__(35);
-// const bs = require('bootstrap/dist/css/bootstrap.css');
-// let ngg  =require('angular-route');
-// console.log(ngg);
 const ngRoute = __webpack_require__(36);
 const app = angular.module("app", [ngRoute]);
 
 __webpack_require__(38)(app);
-__webpack_require__(44)(app);
+__webpack_require__(41)(app);
+
+__webpack_require__(42)(app);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
-        templateUrl: 'partials/loginForm/loginLayout.html'
+        templateUrl: 'partials/loginForm/loginLayout.html',
+        controller: __webpack_require__(45)
     });
     $routeProvider.when('/workspace', {
-        templateUrl: 'partials/moqupEditor/workSpaceLayout.html'
+        templateUrl: 'partials/workspace/workspace.html',
+        controller: __webpack_require__(46)
     });
     $routeProvider.otherwise({
         redirectTo: '/login'
@@ -13762,11 +13763,6 @@ app.run(function ($rootScope, $location, loginService) {
         }
     });
 });
-
-// require('./directives/workSpace')(ngModule)
-// require('./directives/loginForm')(app)	
-
-// console.log(ngModule);
 
 /***/ }),
 /* 11 */
@@ -49808,7 +49804,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".flexDisplay {\n    display: flex;\n}\n\n.position-absolute {\n    position: absolute;\n}\n\n.position-relative {\n    position: relative;\n}\n\n.reset-margin {\n    margin: 0;\n}\n\n.flex-stretch {\n    flex: 1;\n}\n\n.flex-column {\n    flex-direction: column;\n}\n\n.full-height {\n\theight: 100%;\n}\n\n.full-width {\n\twidth: 100%;\n}\n\n.display-inline {\n\tdisplay: inline-block;\n}\n\n.justify-content-space {\n\tjustify-content: space-between;\n}\n\n.base-color {\n\tcolor: #fff;\n}", ""]);
+exports.push([module.i, "body {\n    background: #EFEFEF;\n}\n\n.flexDisplay {\n    display: flex;\n}\n\n.position-absolute {\n    position: absolute;\n}\n\n.position-relative {\n    position: relative;\n}\n\n.reset-margin {\n    margin: 0;\n}\n\n.flex-stretch {\n    flex: 1;\n}\n\n.flex-column {\n    flex-direction: column;\n}\n\n.full-height {\n\theight: 100%;\n}\n\n.full-width {\n\twidth: 100%;\n}\n\n.display-inline {\n\tdisplay: inline-block;\n}\n\n.justify-content-space {\n\tjustify-content: space-between;\n}\n\n.base-color {\n\tcolor: #fff;\n}\n\n.base-background {\n    background: #fff\n}", ""]);
 
 // exports
 
@@ -51089,34 +51085,24 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (ngModule) {
-    __webpack_require__(39)(ngModule);
-    __webpack_require__(43)(ngModule);
+    const css = __webpack_require__(39);
+
+    ngModule.directive('loginModule', function () {
+
+        return {
+            templateUrl: 'partials/loginForm/loginForm.html'
+        };
+    });
 };
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function (ngModule) {
-    const css = __webpack_require__(40);
-
-    ngModule.directive('loginModule', function () {
-
-        return {
-            templateUrl: 'partials/loginForm/loginForm.html',
-            controller: __webpack_require__(42)
-        };
-    });
-};
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(41);
+var content = __webpack_require__(40);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -51141,7 +51127,7 @@ if(false) {
 }
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -51149,25 +51135,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".loginForm {\n    padding: 20px;\n    border: 3px solid #f1f1f1;\n}\n\n\n.loginError {\n\tpadding: 10px 0;\n\tfont-weight: bold;\n}", ""]);
+exports.push([module.i, ".loginForm {\n    padding: 20px;\n    /* border: 3px solid #f1f1f1; */\n}\n\n\n.loginError {\n\tpadding: 10px 0;\n\tfont-weight: bold;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-module.exports = function ($scope, loginService) {
-
-    $scope.login = function (user) {
-        console.log("here", loginService);
-        loginService.login(user, $scope);
-    };
-};
-
-/***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51193,6 +51167,16 @@ module.exports = function (ngModule) {
                     $scope.msgText = "Failed to connect to server";
                     console.log("failure");
                 });
+            },
+
+            logout: function (user, $scope) {
+                $http.get('/logout').then(function (msg) {
+                    console.log("success");
+                    $location.path("/login");
+                }).catch(function () {
+                    // $scope.msgText = "Failed to connect to server"
+                    console.log("failure");
+                });
             }
 
         };
@@ -51200,40 +51184,28 @@ module.exports = function (ngModule) {
 };
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (ngModule) {
-    __webpack_require__(45)(ngModule);
-};
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = function (ngModule) {
-    "use strict";
-
-    const $ = __webpack_require__(0);
-    const css = __webpack_require__(46);
+    const css = __webpack_require__(43);
 
     ngModule.directive('moqupModule', function () {
 
         return {
-            templateUrl: 'partials/moqupEditor/moqupEditor.html',
-            controller: __webpack_require__(48)
+            templateUrl: 'partials/workspace/workspace.html'
         };
     });
 };
 
 /***/ }),
-/* 46 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(47);
+var content = __webpack_require__(44);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -51258,7 +51230,7 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -51266,26 +51238,39 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n.droppableHover {\n    box-shadow: 0 0 11px black inset !important;\n    cursor: cell;\n    /*background-color: rgb(242, 242, 242) !important;*/\n}\n\n#layoutConfig {\n    padding: 10px;\n}\n\n\n/*For line suport*/\n\n#vLine {\n    width: 1px;\n    height: 100%;\n}\n\n#hLine {\n    width: 100%;\n    height: 1px;\n}\n\n#heMidLine {\n    width: 100%;\n    height: 1px;\n    background: #777777 !important;\n}\n\n#veMidLine {\n    width: 1px;\n    height: 100%;\n    background: #777777 !important;\n}\n\n#vLineBase {\n    width: 1px;\n    height: 100%;\n    /*background: #FF8904 !important;*/\n}\n\n#hLineBase {\n    width: 100%;\n    height: 1px;\n    /*background: #FF8904 !important;*/\n}\n\n#hMidLine,\n#vMidLine,\n#vLineBase,\n#hLineBase,\n#heMidLine,\n#veMidLine,\n#hLine,\n#vLine {\n    z-index: 8000;\n    background: #ff88f9;\n    display: none;\n    top: 0;\n    left: 0;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
+exports.push([module.i, ".layout-header {\n    padding: 20px;\n}\n\n.workspace {\n    width: 70%;\n}\n\n.default-position {\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n}\n\n.droppable {\n    margin: 20px;\n    border: 1px solid #ccc;\n    background-size: 15px 15px;\n    background-image: repeating-linear-gradient(0deg, #F4F4F4, #F2F2F2 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-90deg, #F2F2F2, #F2F2F2 1px, transparent 1px, transparent 40px);\n}\n\n.highlight {\n    border: 1px solid red;\n    font-weight: bold;\n    font-size: 45px;\n    background-color: #333333;\n}\n\n.draggables {}\n\n.basicUnit {\n    cursor: pointer;\n    padding: 20px;\n    border: 1px solid #ccc;\n    height: 100px;\n    text-align: center;\n    text-transform: uppercase;\n}\n\n.contentHoverClass {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 1px solid rgb(40, 147, 179);\n}\n\n.workspace-baseUnit:hover .contentHoverClass {\n    display: block !important;\n}\n\n.droppableHover {\n    box-shadow: 0 0 11px black inset !important;\n    cursor: cell;\n    /*background-color: rgb(242, 242, 242) !important;*/\n}\n\n#layoutConfig {\n    padding: 10px;\n}\n\n.signout {\n    cursor: pointer;\n}\n\n\n/*For line suport*/\n\n#vLine {\n    width: 1px;\n    height: 100%;\n}\n\n#hLine {\n    width: 100%;\n    height: 1px;\n}\n\n#heMidLine {\n    width: 100%;\n    height: 1px;\n    background: #777777 !important;\n}\n\n#veMidLine {\n    width: 1px;\n    height: 100%;\n    background: #777777 !important;\n}\n\n#vLineBase {\n    width: 1px;\n    height: 100%;\n    /*background: #FF8904 !important;*/\n}\n\n#hLineBase {\n    width: 100%;\n    height: 1px;\n    /*background: #FF8904 !important;*/\n}\n\n#hMidLine,\n#vMidLine,\n#vLineBase,\n#hLineBase,\n#heMidLine,\n#veMidLine,\n#hLine,\n#vLine {\n    z-index: 8000;\n    background: #ff88f9;\n    display: none;\n    top: 0;\n    left: 0;\n}\n\n\n/*Resize handlers*/\n\n.ui-resize-y-b {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    bottom: -5px;\n}\n\n.ui-resize-y-t {\n    cursor: row-resize;\n    position: absolute;\n    width: 100%;\n    height: 7px;\n    background-color: rgba(0, 0, 0, 0);\n    left: 0;\n    top: -5px;\n}\n\n.ui-resize-x-r {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    right: -2px;\n    top: 0;\n}\n\n.ui-resize-x-l {\n    cursor: col-resize;\n    position: absolute;\n    width: 7px;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0);\n    left: -2px;\n    top: 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 48 */
+/* 45 */
+/***/ (function(module, exports) {
+
+module.exports = function ($scope, loginService) {
+
+    $scope.login = function (user) {
+        console.log("here", loginService);
+        loginService.login(user, $scope);
+    };
+};
+
+/***/ }),
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-const workSpaceHandler = __webpack_require__(49);
-const basicUnitHandler = __webpack_require__(58);
+const workSpaceHandler = __webpack_require__(47);
+const basicUnitHandler = __webpack_require__(56);
 const attributeHandler = __webpack_require__(9);
 
-module.exports = function ($scope) {
+module.exports = function ($scope, loginService) {
 
   $scope.signout = function () {
     console.log("here");
+    loginService.logout();
   };
 
   let $workSpaceContainer = $(".droppable");
@@ -51298,7 +51283,7 @@ module.exports = function ($scope) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51310,8 +51295,8 @@ module.exports = function ($scope) {
 __webpack_require__(0);
 __webpack_require__(4);
 __webpack_require__(8);
-const getLayout = __webpack_require__(56);
-const resizeHandler = __webpack_require__(57);
+const getLayout = __webpack_require__(54);
+const resizeHandler = __webpack_require__(55);
 const attributeHandler = __webpack_require__(9);
 
 // require('jquery-ui-bundle');
@@ -51449,7 +51434,7 @@ let computeAlignmentLines = function (element) {
 
     return function (element, container) {
         let maps = [];
-        let threshold = 5;
+        let threshold = 2;
         let siblings = element.siblings(".workspace-baseUnit");
         if (maps.length === 0 || maps.length !== siblings.length) {
             maps.length = 0;
@@ -51601,7 +51586,7 @@ module.exports = init;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -51625,7 +51610,7 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51673,7 +51658,7 @@ return $.extend( $.expr[ ":" ], {
 
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -51726,7 +51711,7 @@ return $.ui.plugin = {
 
 
 /***/ }),
-/* 53 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -51756,7 +51741,7 @@ return $.ui.safeBlur = function( element ) {
 
 
 /***/ }),
-/* 54 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51810,7 +51795,7 @@ return $.fn.scrollParent = function( includeHidden ) {
 
 
 /***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -51859,7 +51844,7 @@ return $.ui.safeActiveElement = function( document ) {
 
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52002,7 +51987,7 @@ module.exports = init;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52112,7 +52097,7 @@ module.exports = init;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52125,7 +52110,7 @@ __webpack_require__(0);
 __webpack_require__(4);
 __webpack_require__(8);
 // require('jquery-ui-bundle');
-let basicUnits = __webpack_require__(59);
+let basicUnits = __webpack_require__(57);
 let container = "";
 
 //Define the draggable and the clickable component here
@@ -52183,7 +52168,7 @@ module.exports = init;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = [{

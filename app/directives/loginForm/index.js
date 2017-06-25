@@ -1,4 +1,11 @@
 module.exports = function(ngModule) {
-    require('./loginForm')(ngModule);
-    require('./loginService')(ngModule);
+    const css = require("./login.css");
+
+    ngModule.directive('loginModule', function() {
+
+        return {
+            templateUrl: 'partials/loginForm/loginForm.html'
+        }
+
+    })
 }

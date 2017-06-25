@@ -61,6 +61,10 @@
     padding: 10px;
 }
 
+.signout {
+    cursor: pointer;
+}
+
 
 /*For line suport*/
 

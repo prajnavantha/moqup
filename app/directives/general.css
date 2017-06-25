@@ -1,3 +1,7 @@
+body {
+    background: #EFEFEF;
+}
+
 .flexDisplay {
     display: flex;
 }
@@ -40,4 +44,8 @@
 
 .base-color {
 	color: #fff;
+}
+
+.base-background {
+    background: #fff
 }

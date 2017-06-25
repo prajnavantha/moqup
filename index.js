@@ -25,32 +25,25 @@ app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized
 
 
 app.post('/login', function(req, res) {
-        if (req.body.email === "aa@bb.com" && req.body.password === "12345") {
-            res.cookie("accessToken", new Date().getTime())
-            res.status(200).send({
-                "result": "success"
-            })
-        } else {
-            res.status(200).send({
-                "result": "failure",
-                "reason":"Invalid username or password"
-            })
-        }
-    })
-    // /*Handling Authentication*/
-    // // var passport = require('./server/passportAuth');
-    // app.use(passport.initialize());
-    // app.use(passport.session());
+    if (req.body.email === "test@moengage.com" && req.body.password === "12345") {
+        res.cookie("accessToken", new Date().getTime())
+        res.status(200).send({
+            "result": "success"
+        })
+    } else {
+        res.status(200).send({
+            "result": "failure",
+            "reason": "Invalid username or password"
+        })
+    }
+})
 
+app.get('/logout', function(req, res) {
+    res.clearCookie('accessToken');
+    // res.redirect('/');
+    res.status(200).send()
 
-/*mongoose connectivity */
-
-
-// var mongoose = require('./server/mongooseConnection');
-
-// var userData = require('./server/userModel')(mongoose);
-
-
+})
 
 
 
