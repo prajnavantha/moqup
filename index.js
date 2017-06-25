@@ -16,16 +16,31 @@ var fs = require('fs');
 var path = require('path');
 app.use('/static', express.static(path.join(__dirname, 'dist')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/directives', express.static(path.join(__dirname, 'app/directives')));
+app.use('/partials', express.static(path.join(__dirname, 'app/partials')));
 app.use(cookieParser()); // for handling cookie
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
-// /*Handling Authentication*/
-// // var passport = require('./server/passportAuth');
-// app.use(passport.initialize());
-// app.use(passport.session());
+
+
+app.post('/login', function(req, res) {
+        if (req.body.email === "aa@bb.com" && req.body.password === "12345") {
+            res.cookie("accessToken", new Date().getTime())
+            res.status(200).send({
+                "result": "success"
+            })
+        } else {
+            res.status(200).send({
+                "result": "failure",
+                "reason":"Invalid username or password"
+            })
+        }
+    })
+    // /*Handling Authentication*/
+    // // var passport = require('./server/passportAuth');
+    // app.use(passport.initialize());
+    // app.use(passport.session());
 
 
 /*mongoose connectivity */

@@ -1,17 +1,12 @@
 module.exports = function(ngModule) {
-    
+    const css = require("./login.css");
+
     ngModule.directive('loginModule', function() {
 
-  
+
         return {
-            restrict: 'E',
-            scope: {},
-            templateUrl: 'directives/loginForm.html',
-            controllerAs: 'vm',
-            controller: function() {
-                var vm = this;
-                vm.greeting = 'Hello Webpack'
-            }
+            templateUrl: 'partials/loginForm/loginForm.html',
+            controller: require('./loginController')
         }
 
     })

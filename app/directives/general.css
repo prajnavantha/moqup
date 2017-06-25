@@ -26,6 +26,10 @@
 	height: 100%;
 }
 
+.full-width {
+	width: 100%;
+}
+
 .display-inline {
 	display: inline-block;
 }

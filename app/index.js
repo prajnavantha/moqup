@@ -3,12 +3,40 @@ const angular = require("angular");
 const $ = require("jquery");
 const bootstrap = require('bootstrap');
 const bs = require('bootstrap/dist/css/bootstrap.css');
-// const bs = require('bootstrap/dist/css/bootstrap.css');
-const ngModule = angular.module("app", []);
-
 const generalCss = require("./directives/general.css");
+const utils = require("./shared/utils");
+// const bs = require('bootstrap/dist/css/bootstrap.css');
+// let ngg  =require('angular-route');
+// console.log(ngg);
+const ngRoute = require('angular-route');
+const app = angular.module("app", [ngRoute]);
 
+require('./directives/loginForm')(app)
+require('./directives/workSpace')(app)
 
-require('./directives/workSpace')(ngModule)
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/login', {
+        templateUrl: 'partials/loginForm/loginLayout.html'
+    });
+    $routeProvider.when('/workspace', {
+        templateUrl: 'partials/moqupEditor/workSpaceLayout.html'
+    });
+    $routeProvider.otherwise({
+        redirectTo: '/login'
+    })
+
+}])
+
+app.run(function($rootScope, $location, loginService) {
+    let routePermission = ['/workspace'];
+    $rootScope.$on('$routeChangeStart', function() {
+        if (routePermission.indexOf($location.path()) !== -1 && !utils.getCookie("accessToken")) {
+            $location.path("/login");
+        }
+    })
+})
+
+// require('./directives/workSpace')(ngModule)
+// require('./directives/loginForm')(app)	
 
 // console.log(ngModule);

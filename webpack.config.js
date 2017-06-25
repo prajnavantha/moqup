@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     entry: './app/index.js',
@@ -13,6 +14,11 @@ module.exports = {
         path: __dirname + '/dist',
         publicPath: '/static/',
         filename: 'bundle.js'
+    },
+    resolve: {
+        alias: {
+            'ngRoute': 'angular-route'
+        }
     },
     // resolve: {
     //     alias: {

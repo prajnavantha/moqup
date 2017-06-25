@@ -1,3 +1,6 @@
+/**
+ * Attaches basic unit drag behaviours
+ */
 "use strict"
 require('jquery');
 require("jquery-ui/ui/widgets/draggable");

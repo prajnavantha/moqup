@@ -30,8 +30,10 @@ let attachHandlers = function() {
         mousePos.y = e.pageY;
     })
 
-    container.on("click", ".workspace-baseUnit", function() {
-        //handle the sidebar configuration
+    container.on("click", ".workspace-baseUnit", function(e) {
+        //handle the sidebar configuration and remove any propagation
+        e.preventDefault();
+        e.stopPropagation();
         let $this = $(this);
         let type = $this.attr("data-option");
         let element = $this.find(".data");

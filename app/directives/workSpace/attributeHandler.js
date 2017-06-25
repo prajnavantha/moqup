@@ -14,6 +14,7 @@ let attrOptions = (function() {
     let attachHandlers = function() {
         container.on("input", function(e) {
             // body...
+
             let $this = $(e.target);
             let attr = $this.attr("data-type");
             let value = $this.val();
@@ -36,7 +37,7 @@ let attrOptions = (function() {
         type = tp;
         var id = container.attr("id");
 
-        $("a[href='#" + id + "']").click();
+        $("a[data-target='#" + id + "']").tab("show");
         container.empty();
         let layout = "";
         if (type === "image") {
